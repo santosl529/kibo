@@ -1,12 +1,26 @@
 package jp.jaxa.iss.kibo.rpc.defaultapk;
 
-import org.opencv.core.Mat;
+import android.graphics.Bitmap;
+import android.media.ThumbnailUtils;
+import android.provider.MediaStore;
 
+import org.opencv.core.Mat;
+import org.tensorflow.lite.support.image.TensorImage;
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer;
+import org.tensorflow.lite.task.core.BaseOptions;
+import org.tensorflow.lite.task.vision.classifier.Classifications;
+import org.tensorflow.lite.task.vision.classifier.ImageClassifier;
+import org.tensorflow.lite.task.vision.detector.*;
+
+import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import gov.nasa.arc.astrobee.types.Point;
 import gov.nasa.arc.astrobee.types.Quaternion;
 import jp.jaxa.iss.kibo.rpc.api.KiboRpcService;
+
+
 
 /**
  * Class meant to handle commands from the Ground Data System and execute them in Astrobee
@@ -16,6 +30,27 @@ public class YourService extends KiboRpcService {
     @Override
     protected void runPlan1(){
         api.startMission();
+        int imagesize = 224;
+
+        //object detection code
+        // Initialization
+//        ObjectDetector.ObjectDetectorOptions options =
+//                ObjectDetector.ObjectDetectorOptions.builder()
+//                        .setBaseOptions(BaseOptions.builder().useGpu().build())
+//                        .setMaxResults(1)
+//                        .build();
+//        ObjectDetector objectDetector =
+//                ObjectDetector.createFromFileAndOptions(
+//                        getApplicationContext(), modelFile, options);
+//        Bitmap image = api.getBitmapDockCam();
+//// Run inference
+//        List<Detection> results = objectDetector.detect(TensorImage.fromBitmap(image));
+
+
+
+
+
+
         //move to area1
         Point point = new Point(10.95d, -10.00d, 5.195d);
         Quaternion quaternion = new Quaternion(0f, 0f, -0.707f, 0.707f);
